@@ -23,7 +23,7 @@
         <mat-icon>close</mat-icon>
       </button>
       <mat-card-content>
-        <app-countdown [timer]="timer"></app-countdown>
+        <app-countdown [timer]="timer" (timerChanged)="updateTimer($event)"></app-countdown>
       </mat-card-content>
     </mat-card>
   </div>

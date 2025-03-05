@@ -22,7 +22,9 @@ export class AppComponent {
     const newTimer: Timer = {
       id: Date.now(),
       descriptiom: this.description,
-      endTime: new Date(Date.now() + this.minutes * 60 * 1000)
+      endTime: new Date(Date.now() + this.minutes * 60 * 1000),
+      paused: false,
+      remainingTime: 0
     };
 
     this.timers.push(newTimer);
@@ -31,6 +33,11 @@ export class AppComponent {
 
   removeTimer(id: number){
     this.timers = this.timers.filter(t => t.id !== id);
+    this.timerService.saveTimers(this.timers);
+  }
+
+  updateTimer(updateTimer: Timer){
+    const index = this.timers.findIndex(t=>t.id === updateTimer.id);
     this.timerService.saveTimers(this.timers);
   }
 }

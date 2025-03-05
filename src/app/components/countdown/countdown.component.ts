@@ -1,6 +1,7 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { Timer } from 'src/app/models/timer';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-countdown',
@@ -9,29 +10,49 @@ import { Timer } from 'src/app/models/timer';
 })
 export class CountdownComponent implements OnInit,OnDestroy {
   @Input() timer !: Timer;
-  timeLeft !: string;
-  private sub !: Subscription;
+  @Output() timerChanged = new EventEmitter<Timer>();
+  timeLeft : string = '';
+  private intervalId: any;
 
-  ngOnInit() {
-    this.updateTime();
-    this.sub = interval(1000).subscribe(() => this.updateTime());
+  ngOnInit(){
+    this.startTimer();
   }
 
-  updateTime(){
-    const now = new Date().getTime();
-    const diff: any = this.timer.endTime.getTime() - now;
-    if (diff <= 0){
-      this.timeLeft = 'Finished!';
+  startTimer(){
+    this.updateTimeLeft();
+    this.intervalId = setInterval(() => {
+      if(!this.timer.paused){
+        this.updateTimeLeft();
+      }
+    }, 1000);
+  }
+
+  updateTimeLeft(){
+    const diff = this.timer.endTime.getTime() - Date.now();
+
+    if(diff <= 0){
+      this.timeLeft = 'Finished';
+      clearInterval(this.intervalId);
     } else {
-      const sec = Math.floor((diff/1000)%60);
-      const min = Math.floor((diff/1000/60)%60);
-      const hr = Math.floor(diff/1000/60/60);
-      this.timeLeft = `${hr}h ${min}m ${sec}s`
+      const minutes = Math.floor(diff/60000);
+      const seconds = Math.floor((diff%60000)/1000);
+      this.timeLeft = `${minutes}m ${seconds}s`;
     }
   }
 
+  togglePause(){
+    if (this.timer.paused){
+      this.timer.endTime = new Date(Date.now() + (this.timer.remainingTime || 0));
+      this.timer.paused = false;
+    } else {
+      this.timer.remainingTime = this.timer.endTime.getTime() - Date.now();
+      this.timer.paused = true;
+    }
+    this.timerChanged.emit(this.timer);
+  }
+
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    clearInterval(this.intervalId);
   }
 
 }
