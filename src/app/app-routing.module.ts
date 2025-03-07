@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { TimerComponentComponent } from './components/timer-component/timer-component.component';
 
 const routes: Routes = [
-  {path:':pageName', component: AppComponent},
-  {path: '', redirectTo:'/main',pathMatch:'full'},
-  {path:'**', redirectTo:'/main'}
+  { path: ':pageName', component: TimerComponentComponent },
+  { path: '', redirectTo: '/main', pathMatch: 'full' },
 ];
 
 @NgModule({

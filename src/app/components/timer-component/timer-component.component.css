@@ -1,0 +1,70 @@
+/* Full page background and centering */
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    font-family: Roboto, sans-serif;
+  }
+  
+  /* Centered container with box */
+  .container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 32px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title styling */
+  .title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 24px;
+    color: #3f51b5;
+  }
+  
+  /* Form styling */
+  .timer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  
+  .input-row {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .form-field {
+    flex: 1;
+  }
+  
+  /* Button full-width on small screens */
+  @media (max-width: 600px) {
+    .input-row {
+      flex-direction: column;
+    }
+  }
+  
+  /* Timers grid */
+  .timers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  
+  /* Individual timer cards */
+  .timer-card {
+    position: relative;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+  }
+  
