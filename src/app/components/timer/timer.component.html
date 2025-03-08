@@ -22,7 +22,6 @@
       [value]="currentPage"
       (change)="switchPage($event.value)"
       appearance="legacy"
-      class="me-3"
     >
       <mat-button-toggle
         *ngFor="let page of pages"
@@ -35,8 +34,13 @@
       <button mat-raised-button color="primary" (click)="addPage()">
         <mat-icon>add</mat-icon>
       </button>
+      <div class="d-flex justify-content-end mt-3">
+      <button mat-raised-button color="warn" (click)="deletePage()" class="delete-button">
+        <mat-icon>delete</mat-icon> Delete Page
+      </button>
+      </div>
+    
     </div>
-  
     <div class="timers-grid">
       <mat-card class="timer-card" *ngFor="let timer of timers">
         <button mat-icon-button class="close-btn" (click)="removeTimer(timer.id)">

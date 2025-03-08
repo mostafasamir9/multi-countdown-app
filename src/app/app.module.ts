@@ -13,13 +13,13 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import { TimerComponentComponent } from './components/timer-component/timer-component.component';
+import { TimerComponent } from './components/timer/timer.component';
 import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
     CountdownComponent,
-    TimerComponentComponent
+    TimerComponent
   ],
   imports: [
     BrowserModule,

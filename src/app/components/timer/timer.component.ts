@@ -5,10 +5,10 @@ import { TimerService } from 'src/app/services/timer.service';
 
 @Component({
   selector: 'app-timer-component',
-  templateUrl: './timer-component.component.html',
-  styleUrls: ['./timer-component.component.css']
+  templateUrl: './timer.component.html',
+  styleUrls: ['./timer.component.css']
 })
-export class TimerComponentComponent implements OnInit {
+export class TimerComponent implements OnInit {
   timers: Timer[] = [];
   description = '';
   minutes = 0;
@@ -41,6 +41,13 @@ export class TimerComponentComponent implements OnInit {
     this.cdr.detectChanges();
   }
   
+  deletePage(){
+    this.pages = this.pages.filter(page => page !== this.currentPage);
+    this.timerService.savePages(this.pages);
+    localStorage.removeItem(`timers_${this.currentPage}`);
+    const newPage = this.pages.length > 0 ? this.pages[0] : 'main'; // Default to 'home' if empty
+    this.switchPage(newPage)
+  }
 
   addTimer(){
     const newTimer: Timer = {
