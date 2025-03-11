@@ -13,7 +13,7 @@ export class CountdownComponent implements OnInit,OnDestroy {
   @Output() timerChanged = new EventEmitter<Timer>();
   timeLeft : string = '';
   private intervalId: any;
-
+  
   ngOnInit(){
     this.startTimer();
   }
@@ -28,7 +28,15 @@ export class CountdownComponent implements OnInit,OnDestroy {
   }
 
   updateTimeLeft(){
-    const diff = this.timer.endTime.getTime() - Date.now();
+    let diff : number;
+    if (!this.timer.paused)
+    { 
+     diff = this.timer.endTime.getTime() - Date.now();
+    } 
+    else 
+    {
+     diff = this.timer.remainingTime;
+    }
 
     if(diff <= 0){
       this.timeLeft = 'Finished';
@@ -53,6 +61,13 @@ export class CountdownComponent implements OnInit,OnDestroy {
 
   ngOnDestroy(): void {
     clearInterval(this.intervalId);
+  }
+
+  restartTimer(): void {
+    this.timer.endTime = new Date(Date.now() + this.timer.originalTime * 60 * 1000),
+    this.timer.paused = false;
+    this.updateTimeLeft();
+    this.togglePause();
   }
 
 }

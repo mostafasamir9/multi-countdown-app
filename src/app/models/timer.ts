@@ -1,7 +1,8 @@
 export interface Timer{
     id: number;
-    descriptiom: string;
+    description: string;
     endTime: Date;
     paused: boolean;
     remainingTime: number;
+    originalTime: number;
 }

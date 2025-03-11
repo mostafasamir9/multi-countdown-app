@@ -52,10 +52,11 @@ export class TimerComponent implements OnInit {
   addTimer(){
     const newTimer: Timer = {
       id: Date.now(),
-      descriptiom: this.description,
+      description: this.description,
       endTime: new Date(Date.now() + this.minutes * 60 * 1000),
       paused: false,
-      remainingTime: 0
+      remainingTime: 0,
+      originalTime: this.minutes
     };
 
     this.timers.push(newTimer);
@@ -69,7 +70,6 @@ export class TimerComponent implements OnInit {
   }
 
   updateTimer(updateTimer: Timer){
-    const index = this.timers.findIndex(t=>t.id === updateTimer.id);
     this.timerService.saveTimers(this.timers,this.currentPage);
   }
 
@@ -89,4 +89,6 @@ export class TimerComponent implements OnInit {
     this.timerService.savePages(this.pages)
 
   }
+
+  
 }

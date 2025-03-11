@@ -1,5 +1,5 @@
 <div style="height: 100%;">
-    <mat-card-title>{{ timer.descriptiom }}</mat-card-title>
+    <mat-card-title>{{ timer.description }}</mat-card-title>
     <mat-card-content>
       <h1>{{ timeLeft }}</h1>
     </mat-card-content>
@@ -10,7 +10,11 @@
           style="position: absolute; top: 50%; left: 75%;">
           <mat-icon>{{ timer.paused ? 'play_arrow' : 'pause' }}</mat-icon>
         </button>
-      
+        
+        <button mat-mini-fab color="secondary" (click)="restartTimer()"
+        style="position: absolute; top: 50%; left: 50%;">
+        <mat-icon>loop</mat-icon>
+        </button>
       </div>
       
   </div>

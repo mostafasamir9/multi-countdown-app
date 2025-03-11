@@ -13,7 +13,8 @@ export class TimerService {
       ...timer,
       endTime: new Date(timer.endTime),
       paused: timer.paused || false,
-      remainingTime: timer.remainingTime || 0
+      remainingTime: timer.remainingTime || 0,
+      originalTime: timer.originalTime
     }));
   }
   saveTimers(timers : Timer[], page:string){
