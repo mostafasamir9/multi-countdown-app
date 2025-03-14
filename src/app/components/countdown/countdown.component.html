@@ -4,16 +4,26 @@
       <h1>{{ timeLeft }}</h1>
     </mat-card-content>
   
-    <div style="height: 75px; width: 100%;">
+    <div style="height: 50px; width: 100%;">
   
         <button mat-mini-fab color="secondary" (click)="togglePause()"
-          style="position: absolute; top: 50%; left: 75%;">
+          style="position: absolute; top: 60%; left: 80%;">
           <mat-icon>{{ timer.paused ? 'play_arrow' : 'pause' }}</mat-icon>
         </button>
         
         <button mat-mini-fab color="secondary" (click)="restartTimer()"
-        style="position: absolute; top: 50%; left: 50%;">
+        style="position: absolute; top: 60%; left: 55%;">
         <mat-icon>loop</mat-icon>
+        </button>
+
+        <button mat-mini-fab color="secondary" (click)="restartTimer()"
+        style="position: absolute; top: 60%; left: 30%;">
+        <p>+5</p>
+        </button>
+
+        <button mat-mini-fab color="secondary" (click)="restartTimer()"
+        style="position: absolute; top: 60%; left: 5%;">
+        <p>+1</p>
         </button>
       </div>
       

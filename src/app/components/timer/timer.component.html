@@ -16,30 +16,32 @@
   
       <button mat-raised-button color="primary" type="submit">Add Timer</button>
     </form>
-  
-    <div style="padding-bottom: 10px;">
-      <mat-button-toggle-group
-      [value]="currentPage"
-      (change)="switchPage($event.value)"
-      appearance="legacy"
-    >
-      <mat-button-toggle
-        *ngFor="let page of pages"
-        [value]="page"
+    <div>
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding-bottom: 10px;">
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <mat-button-toggle-group
+        [value]="currentPage"
+        (change)="switchPage($event.value)"
+        appearance="legacy"
       >
-        {{ page }}
-      </mat-button-toggle>
-    </mat-button-toggle-group>
-    
-      <button mat-raised-button color="primary" (click)="addPage()">
-        <mat-icon>add</mat-icon>
-      </button>
+        <mat-button-toggle
+          *ngFor="let page of pages"
+          [value]="page"
+        >
+          {{ page }}
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+      
+        <button mat-raised-button color="primary" (click)="addPage()">
+          <mat-icon>add</mat-icon>
+        </button>
+    </div>
       <div class="d-flex justify-content-end mt-3">
       <button mat-raised-button color="warn" (click)="deletePage()" class="delete-button">
         <mat-icon>delete</mat-icon> Delete Page
       </button>
       </div>
-    
+    </div>
     </div>
     <div class="timers-grid">
       <mat-card class="timer-card" *ngFor="let timer of timers">
