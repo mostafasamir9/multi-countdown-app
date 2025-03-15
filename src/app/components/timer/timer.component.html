@@ -23,22 +23,23 @@
         [value]="currentPage"
         (change)="switchPage($event.value)"
         appearance="legacy"
+        style="flex-wrap: wrap; overflow: hidden;"
       >
         <mat-button-toggle
-          *ngFor="let page of pages"
-          [value]="page"
+        *ngFor="let page of pages"
+        [value]="page"
         >
-          {{ page }}
-        </mat-button-toggle>
+        {{ page }}
+      </mat-button-toggle>
       </mat-button-toggle-group>
       
-        <button mat-raised-button color="primary" (click)="addPage()">
+        <button class="pr-3 pl-3" mat-raised-button color="primary" (click)="addPage()">
           <mat-icon>add</mat-icon>
         </button>
     </div>
-      <div class="d-flex justify-content-end mt-3">
+      <div class="d-flex justify-content-end">
       <button mat-raised-button color="warn" (click)="deletePage()" class="delete-button">
-        <mat-icon>delete</mat-icon> Delete Page
+        <mat-icon>delete</mat-icon>
       </button>
       </div>
     </div>

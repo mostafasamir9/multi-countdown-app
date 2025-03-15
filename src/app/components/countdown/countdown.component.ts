@@ -70,4 +70,9 @@ export class CountdownComponent implements OnInit,OnDestroy {
     this.togglePause();
   }
 
+  addMinute(min:number): void {
+    this.timer.endTime = new Date(this.timer.endTime.getTime() + min * 60 * 1000),
+    this.updateTimeLeft();
+  }
+
 }
