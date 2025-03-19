@@ -1,0 +1,14 @@
+<div class="dialog-container">
+    <h2 mat-dialog-title class="dialog-title">Enter Page Name</h2>
+    <mat-dialog-content class="dialog-content">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Page Name</mat-label>
+        <input matInput [(ngModel)]="pageName" />
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions class="dialog-actions">
+      <button mat-button (click)="dialogRef.close()" class="cancel-btn">Cancel</button>
+      <button mat-raised-button color="primary" (click)="submit()" [disabled]="!pageName">OK</button>
+    </mat-dialog-actions>
+  </div>
+  

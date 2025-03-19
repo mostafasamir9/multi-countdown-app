@@ -1,7 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Timer } from 'src/app/models/timer';
 import { TimerService } from 'src/app/services/timer.service';
+import { PageNameDialogComponent } from '../page-name-dialog/page-name-dialog.component';
 
 @Component({
   selector: 'app-timer-component',
@@ -20,7 +22,8 @@ export class TimerComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private timerService: TimerService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    public dialog: MatDialog
   ) {
     this.pages = this.timerService.loadPages();
     if (this.pages.length == 0)
@@ -81,12 +84,15 @@ export class TimerComponent implements OnInit {
   }
 
   addPage(){
-    const newPageName = prompt('Enter Page Name');
-    if (newPageName){
-      this.pages.push(newPageName);
-      this.switchPage(newPageName);
-    }
-    this.timerService.savePages(this.pages)
+    const dialogRef = this.dialog.open(PageNameDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.pages.push(result);
+        this.switchPage(result);
+        this.timerService.savePages(this.pages);
+      }
+    });
 
   }
 

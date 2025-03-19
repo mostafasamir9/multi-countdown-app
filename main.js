@@ -1,17 +1,20 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
+const { app, BrowserWindow } = require('electron')
 
-let win;
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 1000,
+    height: 700,
+    alwaysOnTop: true, 
+    autoHideMenuBar: true, // Hides the menu bar
+    minWidth: 300, // Set minimum width
+    minHeight: 200, // Set minimum width
+  })
+
+  win.loadFile('dist/multi-countdown-app/index.html');
+
+}
 
 app.whenReady().then(() => {
-  win = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    webPreferences: {
-      nodeIntegration: true
-    }
-  });
-
-  win.loadFile(path.join(__dirname, '../dist/your-app-name/index.html'));
-});
-
+  createWindow();
+  popupWindow.focus();
+})

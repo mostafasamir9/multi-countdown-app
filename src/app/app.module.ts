@@ -15,11 +15,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { TimerComponent } from './components/timer/timer.component';
 import { RouterModule } from '@angular/router';
+import { PageNameDialogComponent } from './components/page-name-dialog/page-name-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
     CountdownComponent,
-    TimerComponent
+    TimerComponent,
+    PageNameDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { RouterModule } from '@angular/router';
     MatCardModule,
     AppRoutingModule, // ✅ Make sure this is added
     RouterModule,     // ✅ Add this if not already
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

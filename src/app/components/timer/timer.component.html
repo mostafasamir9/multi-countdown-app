@@ -18,7 +18,7 @@
     </form>
     <div>
     <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding-bottom: 10px;">
-      <div style="display: flex; gap: 10px; align-items: center;">
+      <div style="display: flex; gap: 5px; align-items: center;">
         <mat-button-toggle-group
         [value]="currentPage"
         (change)="switchPage($event.value)"
@@ -32,17 +32,15 @@
         {{ page }}
       </mat-button-toggle>
       </mat-button-toggle-group>
-      
-        <button class="pr-3 pl-3" mat-raised-button color="primary" (click)="addPage()">
+      </div>
+      <div class="button-container">
+        <button  mat-raised-button (click)="addPage()">
           <mat-icon>add</mat-icon>
         </button>
-    </div>
-      <div class="d-flex justify-content-end">
-      <button mat-raised-button color="warn" (click)="deletePage()" class="delete-button">
-        <mat-icon>delete</mat-icon>
-      </button>
-      </div>
-    </div>
+          <button  mat-raised-button (click)="deletePage()" class="delete-button">
+            <mat-icon>delete</mat-icon>
+          </button>
+      </div>    
     </div>
     <div class="timers-grid">
       <mat-card class="timer-card" *ngFor="let timer of timers">

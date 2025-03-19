@@ -68,3 +68,18 @@ body, html {
     right: 4px;
   }
   
+  .button-container {
+    display: flex;
+    gap: 5px; /* Space between buttons */
+    justify-content: flex-end;
+    flex-wrap: wrap; /* Allows stacking when needed */
+    align-items: left;
+
+  }
+  
+    .button-container button {
+      width: auto; /* Buttons take natural size */
+    }
+  
+  
+  

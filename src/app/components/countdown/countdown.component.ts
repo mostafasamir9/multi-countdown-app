@@ -39,8 +39,7 @@ export class CountdownComponent implements OnInit,OnDestroy {
     }
 
     if(diff <= 0){
-      this.timeLeft = 'Finished';
-      clearInterval(this.intervalId);
+      this.timeLeft = '- - -';
     } else {
       const minutes = Math.floor(diff/60000);
       const seconds = Math.floor((diff%60000)/1000);
