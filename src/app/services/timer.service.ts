@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Timer } from '../models/timer'
+import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class TimerService {
   private key = '';
+  private timerEndSubject = new Subject<string>();
+  onTimerEnd = this.timerEndSubject.asObservable();
 
   loadTimers(page:string) : Timer[] {
     this.key = `timers_${page}`
@@ -30,5 +33,10 @@ export class TimerService {
   loadPages() : string[] {
     this.key = `pages`
     return JSON.parse(localStorage.getItem(this.key) || '[]');
+  }
+
+  timeEnded(timer : Timer){
+    this.timerEndSubject.next(timer.description);
+    timer.notified = true;
   }
 }

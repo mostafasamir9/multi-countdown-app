@@ -5,4 +5,5 @@ export interface Timer{
     paused: boolean;
     remainingTime: number;
     originalTime: number;
+    notified: boolean
 }

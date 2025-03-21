@@ -9,7 +9,19 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(private timerService: TimerService) {
+    
+  }
 
+  ngOnInit(){
+    this.timerService.onTimerEnd.subscribe((desc) => {
+      this.showNotification(desc);
+    });
+  }
 
-
+  showNotification(desc : string) {
+    new Notification("Time's Up!", {
+      body: `Your timer ${desc} has ended.`
+        });
+  }
 }

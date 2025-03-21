@@ -59,7 +59,8 @@ export class TimerComponent implements OnInit {
       endTime: new Date(Date.now() + this.minutes * 60 * 1000),
       paused: false,
       remainingTime: 0,
-      originalTime: this.minutes
+      originalTime: this.minutes,
+      notified: false
     };
 
     this.timers.push(newTimer);

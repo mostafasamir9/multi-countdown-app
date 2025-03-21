@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { Timer } from 'src/app/models/timer';
 import { EventEmitter } from '@angular/core';
+import { TimerService } from 'src/app/services/timer.service';
 
 @Component({
   selector: 'app-countdown',
@@ -13,6 +14,10 @@ export class CountdownComponent implements OnInit,OnDestroy {
   @Output() timerChanged = new EventEmitter<Timer>();
   timeLeft : string = '';
   private intervalId: any;
+
+  constructor(private timerService: TimerService) {
+    
+  }
   
   ngOnInit(){
     this.startTimer();
@@ -40,6 +45,11 @@ export class CountdownComponent implements OnInit,OnDestroy {
 
     if(diff <= 0){
       this.timeLeft = '- - -';
+      clearInterval(this.intervalId);
+      if(!this.timer.notified)
+      {
+        this.timerService.timeEnded(this.timer);
+      }
     } else {
       const minutes = Math.floor(diff/60000);
       const seconds = Math.floor((diff%60000)/1000);
@@ -64,9 +74,12 @@ export class CountdownComponent implements OnInit,OnDestroy {
 
   restartTimer(): void {
     this.timer.endTime = new Date(Date.now() + this.timer.originalTime * 60 * 1000),
+    this.timer.notified = false;
     this.timer.paused = false;
     this.updateTimeLeft();
     this.togglePause();
+    this.startTimer();
+
   }
 
   addMinute(min:number): void {
