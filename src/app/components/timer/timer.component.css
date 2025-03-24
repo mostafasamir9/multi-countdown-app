@@ -51,22 +51,34 @@ body, html {
   /* Timers grid */
   .timers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* Exactly 3 per row */
     gap: 16px;
   }
   
+  .timer-box {
+    width: 100%;
+  }
+
   /* Individual timer cards */
   .timer-card {
     position: relative;
     padding: 16px;
     border-radius: 8px;
   }
-  
+  .timers-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+    justify-content: center;
+  }
   .close-btn {
     position: absolute;
     top: 4px;
     right: 4px;
   }
+
   
   .button-container {
     display: flex;
@@ -82,4 +94,14 @@ body, html {
     }
   
   
-  
+    .separator {
+      display: flex;
+      align-items: center;
+      grid-column: span 3; /* Forces a new row */
+      text-align: center;
+      margin-top: 10px;
+      height: 35px;
+      background-color: #cfb5e0;
+      border-radius: 5px;
+      color: white;
+    }

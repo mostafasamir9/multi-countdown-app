@@ -40,16 +40,28 @@
           <button  mat-raised-button (click)="deletePage()" class="delete-button">
             <mat-icon>delete</mat-icon>
           </button>
+
+          <button mat-raised-button (click)="addSeparator()"><mat-icon>power_input</mat-icon></button>
       </div>    
     </div>
     <div class="timers-grid">
-      <mat-card class="timer-card" *ngFor="let timer of timers">
-        <button mat-icon-button class="close-btn" (click)="removeTimer(timer.id)">
-          <mat-icon>close</mat-icon>
-        </button>
-        <mat-card-content>
-          <app-countdown [timer]="timer" (timerChanged)="updateTimer($event)"></app-countdown>
-        </mat-card-content>
-      </mat-card>
+      <ng-container *ngFor="let timer of timers;">
+        <mat-card *ngIf="!isSeparator(timer)" class="timer-box">
+          <button mat-icon-button class="close-btn" (click)="removeTimer(timer.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-card-content>
+            <app-countdown [timer]="timer"></app-countdown>
+          </mat-card-content>
+        </mat-card>
+    
+        <div *ngIf="isSeparator(timer)" class="separator">
+          <button mat-icon-button class="seperator-close-btn" (click)="removeTimer(timer.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+          <input matInput [(ngModel)]="timer.description" />
+        </div>
+      </ng-container>
     </div>
+    
   </div>

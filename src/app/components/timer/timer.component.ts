@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Timer } from 'src/app/models/timer';
@@ -17,6 +17,9 @@ export class TimerComponent implements OnInit {
 
   pages: string[];
   currentPage: string = 'main';
+
+  separators: Array<number> = [];
+  separatorCounter = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,6 +46,13 @@ export class TimerComponent implements OnInit {
     this.timers = this.timerService.loadTimers(this.currentPage);
     this.cdr.detectChanges();
   }
+
+  @HostListener('window:beforeunload', ['$event'])
+  beforeUnloadHandler(event: Event) {
+    this.timerService.savePages(this.pages)
+    this.timerService.saveTimers(this.timers,this.currentPage);
+  }
+  
   
   deletePage(){
     this.pages = this.pages.filter(page => page !== this.currentPage);
@@ -60,12 +70,35 @@ export class TimerComponent implements OnInit {
       paused: false,
       remainingTime: 0,
       originalTime: this.minutes,
-      notified: false
+      notified: false,
+      type: "timer"
     };
 
     this.timers.push(newTimer);
     this.timerService.savePages(this.pages)
     this.timerService.saveTimers(this.timers,this.currentPage);
+  }
+
+  addSeparator() {
+
+    const newSeperator: Timer = {
+      id: Date.now(),
+      description: this.description,
+      endTime:null,
+      paused: null,
+      remainingTime: null,
+      originalTime: null,
+      notified: false,
+      type: "separator"
+    };
+
+    this.timers.push(newSeperator);
+    this.timerService.savePages(this.pages)
+    this.timerService.saveTimers(this.timers,this.currentPage);
+  }
+
+  removeSeparator(id: number) {
+    this.separators = this.separators.filter(sep => sep !== id);
   }
 
   removeTimer(id: number){
@@ -95,6 +128,23 @@ export class TimerComponent implements OnInit {
       }
     });
 
+  }
+
+  isSeparator(timer: Timer) : boolean
+  {
+    if(timer.type == "separator")
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
+  getSeparatorText(timer: Timer) : string
+  {
+    return timer.description;
   }
 
   

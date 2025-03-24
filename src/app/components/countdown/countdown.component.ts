@@ -33,17 +33,17 @@ export class CountdownComponent implements OnInit,OnDestroy {
   }
 
   updateTimeLeft(){
-    let diff : number;
+    let diff : number|null;
     if (!this.timer.paused)
     { 
-     diff = this.timer.endTime.getTime() - Date.now();
+     diff = this.timer.endTime!.getTime() - Date.now();
     } 
     else 
     {
      diff = this.timer.remainingTime;
     }
 
-    if(diff <= 0){
+    if(diff! <= 0){
       this.timeLeft = '- - -';
       clearInterval(this.intervalId);
       if(!this.timer.notified)
@@ -51,8 +51,8 @@ export class CountdownComponent implements OnInit,OnDestroy {
         this.timerService.timeEnded(this.timer);
       }
     } else {
-      const minutes = Math.floor(diff/60000);
-      const seconds = Math.floor((diff%60000)/1000);
+      const minutes = Math.floor(diff!/60000);
+      const seconds = Math.floor((diff!%60000)/1000);
       this.timeLeft = `${minutes}m ${seconds}s`;
     }
   }
@@ -62,7 +62,7 @@ export class CountdownComponent implements OnInit,OnDestroy {
       this.timer.endTime = new Date(Date.now() + (this.timer.remainingTime || 0));
       this.timer.paused = false;
     } else {
-      this.timer.remainingTime = this.timer.endTime.getTime() - Date.now();
+      this.timer.remainingTime = this.timer.endTime!.getTime() - Date.now();
       this.timer.paused = true;
     }
     this.timerChanged.emit(this.timer);
@@ -73,7 +73,7 @@ export class CountdownComponent implements OnInit,OnDestroy {
   }
 
   restartTimer(): void {
-    this.timer.endTime = new Date(Date.now() + this.timer.originalTime * 60 * 1000),
+    this.timer.endTime = new Date(Date.now() + this.timer.originalTime! * 60 * 1000),
     this.timer.notified = false;
     this.timer.paused = false;
     this.updateTimeLeft();
@@ -83,7 +83,7 @@ export class CountdownComponent implements OnInit,OnDestroy {
   }
 
   addMinute(min:number): void {
-    this.timer.endTime = new Date(this.timer.endTime.getTime() + min * 60 * 1000),
+    this.timer.endTime = new Date(this.timer.endTime!.getTime() + min * 60 * 1000),
     this.updateTimeLeft();
   }
 
