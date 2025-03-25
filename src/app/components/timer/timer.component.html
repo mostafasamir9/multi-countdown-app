@@ -13,8 +13,18 @@
           <input matInput type="number" [(ngModel)]="minutes" name="mins" />
         </mat-form-field>
       </div>
-  
-      <button mat-raised-button color="primary" type="submit">Add Timer</button>
+      <div class="row g-2">
+        <div class="col-10">
+          <button mat-raised-button color="primary" type="submit" class="w-100">
+            Add Timer
+          </button>
+        </div>
+        <div class="col-2">
+          <button mat-raised-button (click)="addSeparator()" class="w-100">
+            <mat-icon>power_input</mat-icon>
+          </button>
+        </div>
+      </div> 
     </form>
     <div>
     <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding-bottom: 10px;">
@@ -40,8 +50,6 @@
           <button  mat-raised-button (click)="deletePage()" class="delete-button">
             <mat-icon>delete</mat-icon>
           </button>
-
-          <button mat-raised-button (click)="addSeparator()"><mat-icon>power_input</mat-icon></button>
       </div>    
     </div>
     <div class="timers-grid">

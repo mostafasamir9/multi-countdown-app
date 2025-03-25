@@ -51,27 +51,21 @@ body, html {
   /* Timers grid */
   .timers-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Exactly 3 per row */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 16px;
   }
 
-  /* When screen width is less than 800px (tablet), show 2 per row */
-@media (max-width: 400px) {
+@media (max-width: 800px) {
   .timers-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* When screen width is less than 500px (mobile), show 1 per row */
-@media (max-width: 200px) {
+@media (max-width: 550px) {
   .timers-grid {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-  
-  .timer-box {
-
-    }
 
   /* Individual timer cards */
   .timer-card {
@@ -104,8 +98,7 @@ body, html {
     .button-container button {
       width: auto; /* Buttons take natural size */
     }
-  
-  
+
     .separator {
       display: flex;
       align-items: center;
@@ -117,3 +110,16 @@ body, html {
       border-radius: 5px;
       color: white;
     }
+    .separator {
+      display: flex;
+      align-items: center;
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-top: 10px;
+      height: 35px;
+      background-color: #cfb5e0;
+      border-radius: 5px;
+      color: white;
+    }
+
+  
