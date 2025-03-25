@@ -54,10 +54,24 @@ body, html {
     grid-template-columns: repeat(3, 1fr); /* Exactly 3 per row */
     gap: 16px;
   }
+
+  /* When screen width is less than 800px (tablet), show 2 per row */
+@media (max-width: 400px) {
+  .timers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* When screen width is less than 500px (mobile), show 1 per row */
+@media (max-width: 200px) {
+  .timers-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
   
   .timer-box {
-    width: 100%;
-  }
+
+    }
 
   /* Individual timer cards */
   .timer-card {
@@ -66,8 +80,6 @@ body, html {
     border-radius: 8px;
   }
   .timers-container {
-    display: flex;
-    flex-wrap: wrap;
     gap: 10px;
     width: 100%;
     max-width: 600px;

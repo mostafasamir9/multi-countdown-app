@@ -81,9 +81,11 @@ export class CountdownComponent implements OnInit,OnDestroy {
     this.startTimer();
 
   }
-
-  addMinute(min:number): void {
-    this.timer.endTime = new Date(this.timer.endTime!.getTime() + min * 60 * 1000),
+  addMinute(min: number): void {
+    if (!this.timer.endTime) return;
+  
+    this.timer.endTime = new Date(this.timer.endTime.getTime() + min * 60 * 1000);
+    this.timer.remainingTime = (this.timer.remainingTime ?? 0) + min * 60 * 1000;
     this.updateTimeLeft();
   }
 
