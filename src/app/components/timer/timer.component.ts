@@ -58,7 +58,7 @@ export class TimerComponent implements OnInit {
     this.pages = this.pages.filter(page => page !== this.currentPage);
     this.timerService.savePages(this.pages);
     localStorage.removeItem(`timers_${this.currentPage}`);
-    const newPage = this.pages.length > 0 ? this.pages[0] : 'main'; // Default to 'home' if empty
+    const newPage = this.pages.length > 0 ? this.pages[0] : 'main';
     this.switchPage(newPage)
   }
 
@@ -97,10 +97,6 @@ export class TimerComponent implements OnInit {
     this.timerService.saveTimers(this.timers,this.currentPage);
   }
 
-  removeSeparator(id: number) {
-    this.separators = this.separators.filter(sep => sep !== id);
-  }
-
   removeTimer(id: number){
     this.timers = this.timers.filter(t => t.id !== id);
     this.timerService.saveTimers(this.timers,this.currentPage);
@@ -130,6 +126,7 @@ export class TimerComponent implements OnInit {
 
   }
 
+  
   isSeparator(timer: Timer) : boolean
   {
     if(timer.type == "separator")
@@ -141,11 +138,5 @@ export class TimerComponent implements OnInit {
       return false;
     }
   }
-
-  getSeparatorText(timer: Timer) : string
-  {
-    return timer.description;
-  }
-
   
 }

@@ -17,12 +17,14 @@ import { TimerComponent } from './components/timer/timer.component';
 import { RouterModule } from '@angular/router';
 import { PageNameDialogComponent } from './components/page-name-dialog/page-name-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SeperatorComponent } from './components/seperator/seperator.component';
 @NgModule({
   declarations: [
     AppComponent,
     CountdownComponent,
     TimerComponent,
-    PageNameDialogComponent
+    PageNameDialogComponent,
+    SeperatorComponent
   ],
   imports: [
     BrowserModule,

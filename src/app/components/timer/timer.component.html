@@ -62,12 +62,8 @@
             <app-countdown [timer]="timer"></app-countdown>
           </mat-card-content>
         </mat-card>
-    
         <div *ngIf="isSeparator(timer)" class="separator">
-          <button mat-icon-button class="seperator-close-btn" (click)="removeTimer(timer.id)">
-            <mat-icon>close</mat-icon>
-          </button>
-          <input matInput [(ngModel)]="timer.description" />
+            <app-seperator [timer]="timer" (removeSeparator)="removeTimer($event)"></app-seperator>
         </div>
       </ng-container>
     </div>
