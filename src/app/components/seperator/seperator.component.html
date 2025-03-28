@@ -1,6 +1,6 @@
-<div class="separator">
+<div style="background-color: {{timer.color}};" class="separator">
     <button mat-icon-button class="seperator-close-btn" (click)="removeTimer()">
         <mat-icon>close</mat-icon>
     </button>
-    <input matInput style="color: {{timer.color}};" [(ngModel)]="timer.description" />
+    <input matInput [(ngModel)]="timer.description" />
 </div>
