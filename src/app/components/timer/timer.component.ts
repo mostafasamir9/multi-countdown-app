@@ -14,6 +14,7 @@ export class TimerComponent implements OnInit {
   timers: Timer[] = [];
   description = '';
   minutes = 0;
+  color = 'black';
 
   pages: string[];
   currentPage: string = 'main';
@@ -71,7 +72,8 @@ export class TimerComponent implements OnInit {
       remainingTime: 0,
       originalTime: this.minutes,
       notified: false,
-      type: "timer"
+      type: "timer",
+      color: this.color
     };
 
     this.timers.push(newTimer);
@@ -89,7 +91,8 @@ export class TimerComponent implements OnInit {
       remainingTime: null,
       originalTime: null,
       notified: false,
-      type: "separator"
+      type: "separator",
+      color: this.color
     };
 
     this.timers.push(newSeperator);

@@ -7,4 +7,7 @@ export interface Timer{
     originalTime: number|null;
     notified: boolean;
     type: string;
+    color: string;
+    
 }
+
