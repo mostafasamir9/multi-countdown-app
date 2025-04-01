@@ -68,14 +68,15 @@ export class TimerComponent implements OnInit {
       id: Date.now(),
       description: this.description,
       endTime: new Date(Date.now() + this.minutes * 60 * 1000),
-      paused: false,
-      remainingTime: 0,
+      paused: true,
+      remainingTime: this.minutes * 60 * 1000,
       originalTime: this.minutes,
       notified: false,
       type: "timer",
       color: this.color
     };
 
+    
     this.timers.push(newTimer);
     this.timerService.savePages(this.pages)
     this.timerService.saveTimers(this.timers,this.currentPage);

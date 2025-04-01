@@ -103,4 +103,18 @@ body, html {
       grid-column: 1 / -1;
     }
 
+    .active {
+      background-color: #ddb8ff !important;
+    }
+
+    
+    .time-up {
+      background-color: #9affb8 !important; /* Red background when time hits 0 */
+    }
   
+    .logo {
+      width: 250px; /* Adjust as needed */
+      height: auto;
+      display: block;
+      margin: 0 auto;
+  }

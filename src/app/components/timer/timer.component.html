@@ -1,6 +1,5 @@
 <div class="container">
-    <h1 class="title">MULTI TIMER</h1>
-  
+  <img src="assets/logo.jpg" alt="Logo" class="logo">    
     <form (submit)="addTimer()" class="timer-form">
       <div class="input-row">
         <mat-form-field appearance="outline" class="form-field">
@@ -21,7 +20,7 @@
       </div>
       <div class="row g-2">
         <div class="col-10">
-          <button mat-raised-button type="submit" class="w-100">
+          <button mat-raised-button color="primary" type="submit" class="w-100">
             Add Timer
           </button>
         </div>
@@ -60,7 +59,7 @@
     </div>
     <div class="timers-grid">
       <ng-container *ngFor="let timer of timers;">
-        <mat-card *ngIf="!isSeparator(timer)" class="timer-box">
+        <mat-card *ngIf="!isSeparator(timer)" class="timer-box" [ngClass]="{'active': timer.remainingTime === 0}" [ngClass]="{'active': !timer.paused, 'time-up': timer.notified && !timer.paused}">
           <button mat-icon-button class="close-btn" (click)="removeTimer(timer.id)">
             <mat-icon>close</mat-icon>
           </button>

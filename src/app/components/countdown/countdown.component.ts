@@ -26,7 +26,7 @@ export class CountdownComponent implements OnInit,OnDestroy {
   startTimer(){
     this.updateTimeLeft();
     this.intervalId = setInterval(() => {
-      if(!this.timer.paused){
+      if(!this.timer.paused || (this.timer.paused && this.timeLeft === '')){
         this.updateTimeLeft();
       }
     }, 1000);

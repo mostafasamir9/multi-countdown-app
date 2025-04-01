@@ -1,5 +1,5 @@
-<div style="height: 100%;">
-    <mat-card-title><input style="color: {{timer.color}};" matInput [(ngModel)]="timer.description"/></mat-card-title>
+<div class="timer-container">
+      <mat-card-title><input [ngStyle]="{'color': timer.color}" matInput [(ngModel)]="timer.description"/></mat-card-title>
     <mat-card-content>
       <h1>{{ timeLeft }}</h1>
     </mat-card-content>
