@@ -58,7 +58,8 @@ export class TimerComponent implements OnInit {
   deletePage(){
     this.pages = this.pages.filter(page => page !== this.currentPage);
     this.timerService.savePages(this.pages);
-    localStorage.removeItem(`timers_${this.currentPage}`);
+    this.timers = [];
+    console.log(this.currentPage);
     const newPage = this.pages.length > 0 ? this.pages[0] : 'main';
     this.switchPage(newPage)
   }

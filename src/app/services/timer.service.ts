@@ -25,6 +25,11 @@ export class TimerService {
     localStorage.setItem(this.key, JSON.stringify(timers));
   }
 
+  removeTimers(page:string){
+    this.key = `timers_${page}`
+    localStorage.setItem(this.key, JSON.stringify([]));
+  }
+
   savePages(pages : string[]){
     this.key = `pages`
     localStorage.setItem(this.key, JSON.stringify(pages));
